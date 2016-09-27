@@ -6,20 +6,15 @@ module.exports = (robot) ->
 
     DUTY_DB = 'db/duty.db'
 
-    robot.hear /(がっちゃんおはよ！)/i, (msg) ->
+    robot.hear /(がっちゃん。おはやう。)/i, (msg) ->
         msg.send "ピピッ！"
         return
 
-    robot.hear /(昨日の最後の当番)/i, (msg) ->
+    robot.hear /(昨日最後に当番を当てられた人)/i, (msg) ->
         selectDb((lastDuty) ->
             msg.send "#{lastDuty}\nクピ！"
             return
         )
-        return
-
-    robot.hear /は([ -~]+)なのです。/i, (msg) ->
-        upsertDb(msg.match[1])
-        msg.send "クピペッパ！"
         return
 
     robot.hear /(がっちゃんよろしく！)/i, (msg) ->
@@ -27,7 +22,7 @@ module.exports = (robot) ->
         msg.send "クピペッパ！"
         return
 
-    robot.hear /今日の最後の当番は([ -~]+)です。/i, (msg) ->
+    robot.hear /本日最後に当番を当てられた人は([ -~]+)です。/i, (msg) ->
         upsertDb(msg.match[1])
         msg.send "クピポー！"
         return
