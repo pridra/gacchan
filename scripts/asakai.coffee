@@ -12,7 +12,7 @@ module.exports = (robot) ->
 
     robot.hear /(昨日最後に当番を当てられた人)/i, (msg) ->
         selectDb((lastDuty) ->
-            msg.send "#{lastDuty}\nクピ！"
+            msg.send "#{lastDuty}クピ！"
             return
         )
         return
